@@ -6,7 +6,8 @@
 using namespace KamataEngine;
 using namespace MathUtility;
 
-void CameraController::Intialize(/*Camera* camera*/) {
+void CameraController::Intialize(/*Camera* camera*/)
+{
 	/// インゲームの初期化処理///
 
 	// 引数として受け取ったデータをメンバ変数に記録する
@@ -30,11 +31,11 @@ void CameraController::Update()
 
 	//追従対象が画面外に出ないように修正
 	camera_.translation_.x = max(camera_.translation_.x, targetPosition_.x + targetMargin.left);
-	camera_.translation_.x = max(camera_.translation_.x, targetPosition_.x + targetMargin.right);
+	camera_.translation_.x = min(camera_.translation_.x, targetPosition_.x + targetMargin.right);
 	camera_.translation_.y = max(camera_.translation_.y, targetPosition_.y + targetMargin.bottom);
-	camera_.translation_.y = max(camera_.translation_.y, targetPosition_.y + targetMargin.top);
+	camera_.translation_.y = min(camera_.translation_.y, targetPosition_.y + targetMargin.top);
 
-	// 移動範囲宣言
+	// 移動範囲制限
 	camera_.translation_.x = max(camera_.translation_.x, movableArea_.left);
 	camera_.translation_.x = min(camera_.translation_.x, movableArea_.right);
 	camera_.translation_.y = max(camera_.translation_.y, movableArea_.bottom);

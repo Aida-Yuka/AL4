@@ -393,15 +393,15 @@ void GameScene::Update()
 		// ビュープロジェクション行列の更新
 		// camera_.UpdateMatrix();
 
+		// カメラコントローラーの更新
+		cameraController_->Update();
+
 		camera_.matView = cameraController_->GetViewProjection().matView;
 		camera_.matProjection = cameraController_->GetViewProjection().matProjection;
 
 		// ビュープロジェクション行列の転送
 		camera_.TransferMatrix();
 	}
-
-	// カメラコントローラーの更新
-	cameraController_->Update();
 
 	// ブロックの更新
 	for (std::vector<WorldTransform*>& worldTransformBlockLine : worldTransformBlocks_) {
